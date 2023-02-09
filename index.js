@@ -132,7 +132,7 @@ function start() {
         },
       ])
       .then((userAnswer) => {
-        const engineer = new engineer(
+        const engineer = new Engineer(
           userAnswer.engineerName,
           userAnswer.engineerId,
           userAnswer.engineerEmail,
@@ -144,7 +144,7 @@ function start() {
   }
 
   //Copy and paste of manager function but switched to get input for an intern
-  function addintern() {
+  function addIntern() {
     inquirer
       .prompt([
         {
@@ -172,11 +172,11 @@ function start() {
         },
       ])
       .then((userAnswer) => {
-        const intern = new intern(
+        const intern = new Intern(
           userAnswer.internName,
           userAnswer.internId,
           userAnswer.internEmail,
-          userAnswer.internGithub
+          userAnswer.internSchool
         );
         teamArray.push(intern);
         addMember();
