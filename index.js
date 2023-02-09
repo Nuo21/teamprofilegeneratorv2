@@ -8,7 +8,7 @@ const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const render = require("");
+const render = require("./src/template");
 
 //This will become the array for the team the user creates
 const teamArray = [];
@@ -38,6 +38,7 @@ function start() {
       });
   }
 
+  //Adding a manager function
   function addManager() {
     inquirer
       .prompt([
@@ -77,14 +78,15 @@ function start() {
       });
   }
 
+  //Adding a new member to the team function
   function addMember() {
     inquirer
       .prompt([
         {
           type: "list",
           name: "memberChoice",
-          message: `Please select which member you'd like to add next. If you are finished, you may choose to "Close App"`,
-          choices: ["Engineer", "Intern", "Close App"],
+          message: `Please select which member you'd like to add next. If you are done adding members to your team, you may click "Finished"`,
+          choices: ["Engineer", "Intern", "Finished"],
         },
       ])
       .then((userAnswer) => {
@@ -100,4 +102,94 @@ function start() {
         }
       });
   }
+
+  //Copy and paste of manager function but switched to get input for an engineer
+  function addEngineer() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "engineerName",
+          message: "What is the engineer's name?",
+        },
+
+        {
+          type: "input",
+          name: "engineerId",
+          message: "What is the engineer's employee ID?",
+        },
+
+        {
+          type: "input",
+          name: "engineerEmail",
+          message: "What is the engineer's email?",
+        },
+
+        {
+          type: "input",
+          name: "engineerGithub",
+          message: "What is the engineer's GitHub username?",
+        },
+      ])
+      .then((userAnswer) => {
+        const engineer = new engineer(
+          userAnswer.engineerName,
+          userAnswer.engineerId,
+          userAnswer.engineerEmail,
+          userAnswer.engineerGithub
+        );
+        teamArray.push(engineer);
+        addMember();
+      });
+  }
+
+  //Copy and paste of manager function but switched to get input for an intern
+  function addintern() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "internName",
+          message: "What is the intern's name?",
+        },
+
+        {
+          type: "input",
+          name: "internId",
+          message: "What is the intern's employee ID?",
+        },
+
+        {
+          type: "input",
+          name: "internEmail",
+          message: "What is the intern's email?",
+        },
+
+        {
+          type: "input",
+          name: "internSchool",
+          message: "Where does the intern go to school?",
+        },
+      ])
+      .then((userAnswer) => {
+        const intern = new intern(
+          userAnswer.internName,
+          userAnswer.internId,
+          userAnswer.internEmail,
+          userAnswer.internGithub
+        );
+        teamArray.push(intern);
+        addMember();
+      });
+  }
+
+  //This function will generate the HTML after the user is done using the app
+  function generateHTML() {
+    fs.writeFileSync(outputPath, render(teamArray), "utf-8");
+  }
+
+  appStart();
 }
+
+//Starts the application
+start();
