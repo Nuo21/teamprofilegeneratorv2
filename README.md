@@ -7,3 +7,5 @@ This is a command-line application that allows the user to generate a team profi
 ## Screenshot
 
 ## Video Walkthrough Link
+
+https://watch.screencastify.com/v/CwLxsU5F6EChIcbhu9WB
