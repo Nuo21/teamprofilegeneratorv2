@@ -6,6 +6,8 @@ This is a command-line application that allows the user to generate a team profi
 
 ## Screenshot
 
+![theteamss](https://user-images.githubusercontent.com/111789697/218204704-4238d584-800d-49aa-a2e8-23afa11ed781.png)
+
 ## Video Walkthrough Link
 
 https://watch.screencastify.com/v/CwLxsU5F6EChIcbhu9WB
